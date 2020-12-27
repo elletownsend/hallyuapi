@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 // NOTE - run 'nodemon server' to start server (live update) or node server.js
 
-
 const getData = (type) => {
     switch (type) {
         case 'people':
@@ -26,8 +25,8 @@ const getData = (type) => {
     }
 };
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
+app.get('/hello', (req, res) => {
+    res.send("안녕!");
 });
 
 // GET .../API/GROUPS
