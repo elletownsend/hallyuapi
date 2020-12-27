@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var fs = require('fs');
+const path = require('path');
 
 const PORT = 3001;
 
@@ -27,10 +28,6 @@ const getData = (type) => {
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
-});
-
-app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
 // GET .../API/GROUPS
