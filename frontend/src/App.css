@@ -28,7 +28,11 @@ nav ul li:first-child {
 }
 
 nav ul li:last-child {
-  margin-right: 10px;
+  margin-right: 30px;
+}
+
+nav .nav-logo {
+  margin-left: 30px;
 }
 
 nav .nav-link {
@@ -45,4 +49,138 @@ nav .nav-link {
 nav .link-main {
   background: #7C5AF4;
   border-radius: 10px;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.header-img {
+  margin-top: 100px;
+  margin-bottom: 25px;
+  align-self: center;
+}
+
+.header-txt {
+  font-family: 'Libre Franklin';
+  font-weight: 600;
+  font-size: 1.125em;
+
+  color: #FFFFFF;
+
+  margin-top: 0;
+  margin-bottom: 75px;
+}
+
+/* Button List */
+.btnList {
+  display: flex;
+  justify-content: center;
+}
+
+.btnList a {
+  max-height: 50px;
+  border-radius: 10px;
+  padding: 15px;
+  margin-right: 50px;
+
+  color: #16172B;
+  font-family: 'Libre Franklin';
+  font-weight: 600;
+  font-size: 1.125em;
+  text-decoration: none;
+}
+
+.btnList a:last-child {
+  margin-right: 0;
+}
+
+.btn1 {
+  background: #67FDFF;
+  box-shadow: 0px 0px 10px rgba(103, 253, 255, 0.75);
+}
+
+.btn2 {
+  background: #B435FF;
+  box-shadow: 0px 0px 10px rgba(180, 53, 255, 0.75);
+}
+
+.btn3 {
+  background: #FFB3DD;
+  box-shadow: 0px 0px 10px rgba(255, 179, 221, 0.75);
+}
+
+/* Content - Thirds */
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.content-thirds {
+  width: 350px;
+  margin-right: 50px;
+}
+
+.content-thirds:last-child {
+  margin-right: 0;
+}
+
+.content-thirds h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+
+  font-size: 1.500em;
+  font-family: 'Rubik';
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+
+  color: #FFFFFF;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.75);
+}
+
+.content-thirds p {
+  font-size: 1.1250em;
+  font-family: 'Libre Franklin';
+  font-weight: 600;
+  line-height: 22px;
+
+  color: #FFFFFF;
+}
+
+/* Footer */
+footer {
+  background-color: #16172B;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5em; 
+}
+
+footer p {
+  font-family: 'Libre Franklin';
+  font-weight: 600;
+  font-size: 0.8750em;
+  letter-spacing: 0.06em;
+
+  color: #FFFFFF;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.75);
+  margin: 0 10px;
+  margin-bottom: 5px;
+}
+
+footer p span {
+  color: #FFB3DD;
+  text-shadow: 0px 0px 5px rgb(255,179,221, 0.75);
 }
