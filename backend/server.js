@@ -9,7 +9,20 @@ const PORT = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
-// NOTE - run 'nodemon server' to start server
+// NOTE - run 'nodemon server' to start server (live update) or node server.js
+
+const getData = (type) => {
+    switch (type) {
+        case 'people':
+            data = fs.readFileSync('../data/all_people.json', 'utf8');
+            return JSON.parse(data);
+            break;
+        case 'groups':
+            data = fs.readFileSync('../data/all_groups.json', 'utf8');
+            return JSON.parse(data);
+            break;
+    }
+};
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
@@ -19,8 +32,7 @@ app.get('/', function (req, res) {
 app.get('/api/groups', function (req, res) {
     let response = [];
 
-    var data = fs.readFileSync('../data/all_groups.json', 'utf8');
-    response = JSON.parse(data);
+    response = getData('groups');
 
     res.json(response);
 });
@@ -29,10 +41,9 @@ app.get('/api/groups', function (req, res) {
 app.get('/api/groups/:id', function (req, res) {
     let response = [];
 
-    var data = fs.readFileSync('../data/all_groups.json', 'utf8');
-
     let id = req.params.id;
-    data = JSON.parse(data);
+
+    let data = getData('groups');
 
     response = data.find(item => item.Id == id);
 
@@ -47,9 +58,7 @@ app.get('/api/groups/:id', function (req, res) {
 app.get('/api/people', function (req, res) {
     let response = [];
 
-    var data = fs.readFileSync('../data/all_people.json', 'utf8');
-
-    response = JSON.parse(data);
+    response = getData('people');
 
     res.json(response);
 });
@@ -58,10 +67,9 @@ app.get('/api/people', function (req, res) {
 app.get('/api/people/:id', function (req, res) {
     let response = [];
 
-    var data = fs.readFileSync('../data/all_people.json', 'utf8');
-
     let id = req.params.id;
-    data = JSON.parse(data);
+
+    let data = getData('people');
 
     response = data.find(item => item.Id == id);
 
