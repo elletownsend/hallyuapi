@@ -1,0 +1,48 @@
+nav {
+  margin: 0;
+  overflow: hidden;
+
+  background: #16172B;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+}
+nav ul li a {
+  color: white;
+  display: block;
+  padding: 15px;
+  margin: 0 5px;
+  text-decoration: none;
+}
+nav ul li:first-child {
+  margin-right: auto;
+}
+
+nav ul li:last-child {
+  margin-right: 10px;
+}
+
+nav .nav-link {
+  font-family: 'Libre Franklin';
+  font-weight: 600;
+  font-size: 	0.8750em;
+
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.75);
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+nav .link-main {
+  background: #7C5AF4;
+  border-radius: 10px;
+}
