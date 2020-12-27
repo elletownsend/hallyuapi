@@ -25,9 +25,7 @@ const getData = (type) => {
     }
 };
 
-app.get('/hello', (req, res) => {
-    res.send("안녕!");
-});
+app.get('/hello', (req, res) => res.send("안녕!"));
 
 // GET .../API/GROUPS
 app.get('/api/groups', function (req, res) {
