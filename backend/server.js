@@ -14,12 +14,16 @@ app.use(bodyParser.json());
 
 const getData = (type) => {
     switch (type) {
-        case 'people':
-            data = fs.readFileSync('../data/all_people.json', 'utf8');
+        case 'artists':
+            data = fs.readFileSync('../data/all_artists.json', 'utf8');
             return JSON.parse(data);
             break;
         case 'groups':
             data = fs.readFileSync('../data/all_groups.json', 'utf8');
+            return JSON.parse(data);
+            break;
+        case 'actors':
+            data = fs.readFileSync('../data/all_actors.json', 'utf-8');
             return JSON.parse(data);
             break;
     }
@@ -36,7 +40,7 @@ app.get('/api/groups', function (req, res) {
     res.json(response);
 });
 
-// GET .../API/GROUPS/:ID (?)
+// GET .../API/GROUPS/:ID
 app.get('/api/groups/:id', function (req, res) {
     let response = [];
 
@@ -54,21 +58,48 @@ app.get('/api/groups/:id', function (req, res) {
 });
 
 // GET .../API/PEOPLE
-app.get('/api/people', function (req, res) {
+app.get('/api/artists', function (req, res) {
     let response = [];
 
-    response = getData('people');
+    response = getData('artists');
 
     res.json(response);
 });
 
 // GET .../API/PEOPLE/:ID
-app.get('/api/people/:id', function (req, res) {
+app.get('/api/artists/:id', function (req, res) {
     let response = [];
 
     let id = req.params.id;
 
-    let data = getData('people');
+    let data = getData('artists');
+
+    response = data.find(item => item.Id == id);
+
+    if (response) {
+        res.json(response);
+    } else {
+        res.sendStatus(404);
+    }
+
+});
+
+// GET .../API/PEOPLE
+app.get('/api/actors', function (req, res) {
+    let response = [];
+
+    response = getData('actors');
+
+    res.json(response);
+});
+
+// GET .../API/PEOPLE/:ID
+app.get('/api/actors/:id', function (req, res) {
+    let response = [];
+
+    let id = req.params.id;
+
+    let data = getData('actors');
 
     response = data.find(item => item.Id == id);
 
