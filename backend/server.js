@@ -35,7 +35,14 @@ app.get('/hello', (req, res) => res.send("안녕!"));
 app.get('/api/groups', function (req, res) {
     let response = [];
 
-    response = getData('groups');
+    let data = getData('groups');
+
+    if (req.query.q != undefined) {
+        response = data.filter(item => item.Name.includes(req.query.q)
+            || item.KoreanName.includes(req.query.q));
+    } else {
+        response = data;
+    }
 
     res.json(response);
 });
@@ -57,16 +64,26 @@ app.get('/api/groups/:id', function (req, res) {
     }
 });
 
-// GET .../API/PEOPLE
+// GET .../API/ARTISTS
 app.get('/api/artists', function (req, res) {
     let response = [];
 
-    response = getData('artists');
+    let data = getData('artists');
+
+    if (req.query.q != undefined) {
+        response = data.filter(item => item.FullName.includes(req.query.q)
+            || item.StageName.includes(req.query.q)
+            || item.KoreanName.includes(req.query.q)
+            || item.KoreanStageName.includes(req.query.q)
+            || item.Group.includes(req.query.q));
+    } else {
+        response = data;
+    }
 
     res.json(response);
 });
 
-// GET .../API/PEOPLE/:ID
+// GET .../API/ARTISTS/:ID
 app.get('/api/artists/:id', function (req, res) {
     let response = [];
 
@@ -84,16 +101,25 @@ app.get('/api/artists/:id', function (req, res) {
 
 });
 
-// GET .../API/PEOPLE
+// GET .../API/ACTORS
 app.get('/api/actors', function (req, res) {
     let response = [];
 
-    response = getData('actors');
+    let data = getData('actors');
+
+    if (req.query.q != undefined) {
+        response = data.filter(item => item.FullName.includes(req.query.q)
+            || item.StageName.includes(req.query.q)
+            || item.KoreanName.includes(req.query.q)
+            || item.KoreanStageName.includes(req.query.q));
+    } else {
+        response = data;
+    }
 
     res.json(response);
 });
 
-// GET .../API/PEOPLE/:ID
+// GET .../API/ACTORS/:ID
 app.get('/api/actors/:id', function (req, res) {
     let response = [];
 
