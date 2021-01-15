@@ -15,3 +15,7 @@ This project is entirely open source, but is not currently open for contribution
 #### Data
 - Add profile images for all idols & groups (?)
 - Clean data of Groups & Artists 
+
+#### Other
+- Write Documentation
+- Add PR templates
