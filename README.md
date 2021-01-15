@@ -9,7 +9,9 @@ This project is entirely open source, but is not currently open for contribution
 
 ### TO DO:
 #### Code
-- Add Front-end with documentation
+- Add Front-end with documentation [feature/docs branch]
+- Mongodb integration
+- Filtering
 - Authentication?
 
 #### Data
@@ -17,5 +19,5 @@ This project is entirely open source, but is not currently open for contribution
 - Clean data of Groups & Artists 
 
 #### Other
-- Write Documentation
-- Add PR templates
+- Write Documentation [feature/docs branch]
+- Add PR templates 
