@@ -18,13 +18,13 @@ Contributing to the documentation of this API is as simple as:
 - Open an issue on the repo [here](https://github.com/elletownsend/hallyuapi/issues) with the label *'Documentation'*
 - Fork the repo🍴
 - To add to the documentation, please stick to the `frontend` file.
-- Submit a pull request referencing the initial raised issue.
+- Submit a pull request referencing the initial raised issue, following the PR template.
 
 ## Data
 
 If you wish to have a person / group added to the data, please follow these steps:
 
-- Raise an issue, with the label *'Data'*, containing:
+- Raise an issue, with the label *'Data'*:
 
     ### Group
         - Name
