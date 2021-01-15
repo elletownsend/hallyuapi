@@ -37,9 +37,13 @@ app.get('/api/groups', function (req, res) {
 
     let data = getData('groups');
 
-    if (req.query.q != undefined) {
-        response = data.filter(item => item.Name.includes(req.query.q)
-            || item.KoreanName.includes(req.query.q));
+    if (req.query.q != undefined || req.query.q != null) {
+        let query = req.query.q;
+
+        query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
+
+        response = data.filter(item => item.Name.toLowerCase().replace(/\s|[^\w]/g, '').includes(query));
+
     } else {
         response = data;
     }
@@ -70,12 +74,14 @@ app.get('/api/artists', function (req, res) {
 
     let data = getData('artists');
 
-    if (req.query.q != undefined) {
-        response = data.filter(item => item.FullName.includes(req.query.q)
-            || item.StageName.includes(req.query.q)
-            || item.KoreanName.includes(req.query.q)
-            || item.KoreanStageName.includes(req.query.q)
-            || item.Group.includes(req.query.q));
+    if (req.query.q != undefined || req.query.q != null) {
+        let query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
+
+        response = data.filter(item =>
+            item.FullName.toLowerCase().replace(/\s|[^\w]/g, '').includes(query) ||
+            item.StageName.toLowerCase().replace(/\s|[^\w]/g, '').includes(query) ||
+            item.Group.toLowerCase().replace(/\s|[^\w]/g, '').includes(query)
+        );
     } else {
         response = data;
     }
@@ -107,11 +113,14 @@ app.get('/api/actors', function (req, res) {
 
     let data = getData('actors');
 
-    if (req.query.q != undefined) {
-        response = data.filter(item => item.FullName.includes(req.query.q)
-            || item.StageName.includes(req.query.q)
-            || item.KoreanName.includes(req.query.q)
-            || item.KoreanStageName.includes(req.query.q));
+    if (req.query.q != undefined || req.query.q != null) {
+        let query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
+
+        response = data.filter(item =>
+            item.FullName.toLowerCase().replace(/\s|[^\w]/g, '').includes(query) ||
+            item.StageName.toLowerCase().replace(/\s|[^\w]/g, '').includes(query)
+        );
+
     } else {
         response = data;
     }
