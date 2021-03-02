@@ -5,9 +5,10 @@ const groups = JSON.parse(
 );
 
 const firstGroup = groups[0].Id;
+const lastGroup = groups[groups.length - 1].Id;
 
 const checkId = (req, res, next, value) => {
-  if (value * 1 < firstGroup) {
+  if (value * 1 < firstGroup || value * 1 > lastGroup) {
     return res.status(404).json({
       status: 'failed',
       message: 'Invalid ID'

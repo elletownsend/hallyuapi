@@ -5,9 +5,10 @@ const artists = JSON.parse(
 );
 
 const firstArtist = artists[0].Id;
+const lastArtist = artists[artists.length - 1].Id;
 
 const checkId = (req, res, next, value) => {
-  if (value * 1 < firstArtist) {
+  if (value * 1 < firstArtist || value * 1 > lastArtist) {
     return res.status(404).json({
       status: 'failed',
       message: 'Invalid ID'

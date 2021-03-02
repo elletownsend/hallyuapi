@@ -5,9 +5,10 @@ const actors = JSON.parse(
 );
 
 const firstActor = actors[0].Id;
+const lastActor = actors[actors.length - 1].Id;
 
 const checkId = (req, res, next, value) => {
-  if (value * 1 < firstActor) {
+  if (value * 1 < firstActor || value * 1 > lastActor) {
     return res.status(404).json({
       status: 'failed',
       message: 'Invalid ID'
