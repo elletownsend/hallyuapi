@@ -1,8 +1,20 @@
 const fs = require('fs');
 
 const groups = JSON.parse(
-  fs.readFileSync(`${__dirname}/data/all_artists.json`)
+  fs.readFileSync(`${__dirname}/../data/all_groups.json`)
 );
+
+const firstGroup = groups[0].Id;
+
+const checkId = (req, res, next, value) => {
+  if (value * 1 < firstGroup) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID'
+    });
+  }
+  next();
+};
 
 const getAllGroups = (req, res) => {
   let results = [];
@@ -32,7 +44,7 @@ const getAllGroups = (req, res) => {
 
 const getGroup = (req, res) => {
   const id = req.params.id * 1;
-  const group = groups.find((item) => item.id === id);
+  const group = groups.find((item) => item.Id === id);
 
   res.status(200).json({
     status: 'success',
@@ -43,6 +55,7 @@ const getGroup = (req, res) => {
 };
 
 module.exports = {
+  checkId,
   getAllGroups,
   getGroup
 };

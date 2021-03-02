@@ -1,8 +1,20 @@
 const fs = require('fs');
 
 const artists = JSON.parse(
-  fs.readFileSync(`${__dirname}/data/all_artists.json`)
+  fs.readFileSync(`${__dirname}/../data/all_artists.json`)
 );
+
+const firstArtist = artists[0].Id;
+
+const checkId = (req, res, next, value) => {
+  if (value * 1 < firstArtist) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID'
+    });
+  }
+  next();
+};
 
 const getAllArtists = (req, res) => {
   let results = [];
@@ -37,7 +49,7 @@ const getAllArtists = (req, res) => {
 
 const getArtist = (req, res) => {
   const id = req.params.id * 1;
-  const artist = artists.find((item) => item.id === id);
+  const artist = artists.find((item) => item.Id === id);
 
   res.status(200).json({
     status: 'success',
@@ -48,6 +60,7 @@ const getArtist = (req, res) => {
 };
 
 module.exports = {
+  checkId,
   getAllArtists,
   getArtist
 };

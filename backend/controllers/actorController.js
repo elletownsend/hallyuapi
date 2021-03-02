@@ -1,14 +1,19 @@
 const fs = require('fs');
 
-const actors = JSON.parse(fs.readFileSync(`${__dirname}/data/all_actors.json`));
+const actors = JSON.parse(
+  fs.readFileSync(`${__dirname}/../data/all_actors.json`)
+);
+
+const firstActor = actors[0].Id;
 
 const checkId = (req, res, next, value) => {
-  if (value * 1 > actors.length) {
+  if (value * 1 < firstActor) {
     return res.status(404).json({
       status: 'failed',
       message: 'Invalid ID'
     });
   }
+  next();
 };
 
 const getAllActors = (req, res) => {
@@ -41,7 +46,7 @@ const getAllActors = (req, res) => {
 
 const getActor = (req, res) => {
   const id = req.params.id * 1;
-  const actor = actors.find((item) => item.id === id);
+  const actor = actors.find((item) => item.Id == id);
 
   res.status(200).json({
     status: 'success',
