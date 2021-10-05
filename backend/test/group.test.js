@@ -45,9 +45,10 @@ describe('Groups - Happy Path Tests', () => {
 
     describe('GET /api/v1/groups?q=', () => {
     it('GET group by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/groups?q=갓세븐');
       chai
         .request(app)
-        .get('/api/v1/groups?q=갓세븐')
+        .get(uri)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
           done();

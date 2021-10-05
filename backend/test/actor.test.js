@@ -45,9 +45,10 @@ describe('Actors - Happy Path Tests', () => {
 
     describe('GET /api/v1/actors?q=', () => {
     it('GET actor by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/actors?q=박형식'); 
       chai
         .request(app)
-        .get('/api/v1/actors?q=박형식')
+        .get(uri)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
           done();

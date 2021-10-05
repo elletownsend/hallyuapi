@@ -45,9 +45,10 @@ describe('Artists - Happy Path Tests', () => {
 
     describe('GET /api/v1/artists?q=', () => {
     it('GET artist by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/artists?q=임재범');
       chai
         .request(app)
-        .get('/api/v1/artists?q=임재범')
+        .get(uri)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
           done();
