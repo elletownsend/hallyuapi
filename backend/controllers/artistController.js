@@ -35,6 +35,12 @@ const getAllArtists = (req, res) => {
           .replace(/\s|[^\w]/g, '')
           .includes(query)
     );
+    if (results.length == 0) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'No entry found matching given criteria'
+      });
+    }
   } else {
     results = artists;
   }
