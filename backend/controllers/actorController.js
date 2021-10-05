@@ -44,10 +44,8 @@ const getAllActors = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    results: results.length,
-    data: {
-      results
-    }
+    count: results.length,
+    results: results
   });
 };
 
@@ -57,9 +55,7 @@ const getActor = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    data: {
-      actor
-    }
+    results: actor
   });
 };
 

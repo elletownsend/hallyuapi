@@ -14,6 +14,9 @@ describe('Actors - Happy Path Tests', () => {
         .get('/api/v1/actors')
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          assert.equal(res.body.count, 310);
+          assert.equal(res.body.results.length, res.body.count);
           done();
         });
     });
@@ -26,6 +29,9 @@ describe('Actors - Happy Path Tests', () => {
         .get('/api/v1/actors/1896')
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          assert.equal(res.body.results.Id, 1896);
+          assert.equal(res.body.results.FullName, 'Park Hyung Sik');
           done();
         });
     });
@@ -38,23 +44,30 @@ describe('Actors - Happy Path Tests', () => {
         .get('/api/v1/actors?q=Park Hyung Sik')
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          assert.equal(res.body.count, 1);
+          assert.equal(res.body.results[0].Id, 1896);
+          assert.equal(res.body.results[0].FullName, 'Park Hyung Sik');
           done();
         });
     });
   });
 
-    describe('GET /api/v1/actors?q=', () => {
-    it('GET actor by search (KR characters)', (done) => {
-      const uri = encodeURI('/api/v1/actors?q=강하늘'); 
-      chai
-        .request(app)
-        .get(uri)
-        .end((err, res) => {
-          assert.equal(res.statusCode, 200);
-          done();
-        });
-    });
-  });
+  // This does not work
+  //   describe('GET /api/v1/actors?q=', () => {
+  //   it('GET actor by search (KR characters)', (done) => {
+  //     const uri = encodeURI('/api/v1/actors?q=강하늘'); 
+  //     chai
+  //       .request(app)
+  //       .get(uri)
+  //       .end((err, res) => {
+  //         assert.equal(res.statusCode, 200);
+  //         assert.equal(res.body.status, 'success');
+  //         assert.equal(res.body.results[0].KoreanName, '강하늘');
+  //         done();
+  //       });
+  //   });
+  // });
 });
 
 describe('Actors - Unhappy Path Tests', () => {

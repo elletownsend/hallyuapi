@@ -13,8 +13,8 @@ This project is entirely open source, but is not currently open for contribution
 #### Code
 - Add Front-end with documentation [feature/docs branch]
 - Mongodb integration
-- Filtering [feature/routing]
-- Authentication? [feature/routing]
+- Filtering (ability to search in Korean?)
+- Authentication
 
 #### Data
 - Add profile images for all idols & groups (?)

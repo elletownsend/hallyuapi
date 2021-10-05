@@ -42,10 +42,8 @@ const getAllGroups = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    results: results.length,
-    data: {
-      results
-    }
+    count: results.length,
+    results: results
   });
 };
 
@@ -55,9 +53,7 @@ const getGroup = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    data: {
-      group
-    }
+    results: group
   });
 };
 

@@ -47,10 +47,8 @@ const getAllArtists = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    results: results.length,
-    data: {
-      results
-    }
+    count: results.length,
+    results: results
   });
 };
 
@@ -60,9 +58,7 @@ const getArtist = (req, res) => {
 
   res.status(200).json({
     status: 'success',
-    data: {
-      artist
-    }
+    results: artist
   });
 };
 
