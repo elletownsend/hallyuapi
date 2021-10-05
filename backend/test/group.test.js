@@ -56,3 +56,30 @@ describe('Groups - Happy Path Tests', () => {
     });
   });
 });
+
+describe('Groups - Unhappy Path Tests', () => {
+
+  describe('GET /api/v1/groups/:id', () => {
+    it('GET Groups Id out of range', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/groups/1781')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          done();
+        });
+    });
+  });
+
+    describe('GET /api/v1/groups', () => {
+    it('GET Groups search criteria not met', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/groups?q=blah')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          done();
+        });
+    });
+  });
+});

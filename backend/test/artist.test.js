@@ -56,3 +56,30 @@ describe('Artists - Happy Path Tests', () => {
     });
   });
 });
+
+describe('Artists - Unhappy Path Tests', () => {
+
+  describe('GET /api/v1/artists/:id', () => {
+    it('GET Artists Id out of range', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/artists/1429')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          done();
+        });
+    });
+  });
+
+    describe('GET /api/v1/artists', () => {
+    it('GET Artists search criteria not met', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/artists?q=blah')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          done();
+        });
+    });
+  });
+});

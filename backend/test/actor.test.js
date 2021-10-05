@@ -45,12 +45,39 @@ describe('Actors - Happy Path Tests', () => {
 
     describe('GET /api/v1/actors?q=', () => {
     it('GET actor by search (KR characters)', (done) => {
-      const uri = encodeURI('/api/v1/actors?q=박형식'); 
+      const uri = encodeURI('/api/v1/actors?q=강하늘'); 
       chai
         .request(app)
         .get(uri)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
+          done();
+        });
+    });
+  });
+});
+
+describe('Actors - Unhappy Path Tests', () => {
+
+  describe('GET /api/v1/actors/:id', () => {
+    it('GET Actors Id out of range', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/actors/2091')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          done();
+        });
+    });
+  });
+
+    describe('GET /api/v1/actors', () => {
+    it('GET Actors search criteria not met', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/actors?q=GOT7')
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
           done();
         });
     });
