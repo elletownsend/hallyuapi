@@ -53,23 +53,25 @@ describe('Groups - Happy Path Tests', () => {
     });
   });
 
-  // Doesn't work
-  //   describe('GET /api/v1/groups?q=', () => {
-  //   it('GET group by search (KR characters)', (done) => {
-  //     const uri = encodeURI('/api/v1/groups?q=갓세븐');
-  //     chai
-  //       .request(app)
-  //       .get(uri)
-  //       .end((err, res) => {
-  //         assert.equal(res.statusCode, 200);
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('GET /api/v1/groups?q=', () => {
+    it('GET group by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/groups?q=%EA%B0%93%EC%84%B8%EB%B8%90');
+      chai
+        .request(app)
+        .get(uri)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          assert.equal(res.body.count, 1);
+          assert.equal(res.body.results[0].Id, 1493);
+          assert.equal(res.body.results[0].Name, 'GOT7');
+          done();
+        });
+    });
+  });
 });
 
 describe('Groups - Unhappy Path Tests', () => {
-
   describe('GET /api/v1/groups/:id', () => {
     it('GET Groups Id out of range', (done) => {
       chai
@@ -82,7 +84,7 @@ describe('Groups - Unhappy Path Tests', () => {
     });
   });
 
-    describe('GET /api/v1/groups', () => {
+  describe('GET /api/v1/groups', () => {
     it('GET Groups search criteria not met', (done) => {
       chai
         .request(app)

@@ -21,14 +21,13 @@ const getAllGroups = (req, res) => {
   let results = [];
 
   if (req.query.q != undefined || req.query.q != null) {
-    let query = req.query.q;
+    let query = decodeURIComponent(req.query.q.toLowerCase());
 
-    query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
-
-    results = groups.filter((item) =>
-      item.Name.toLowerCase()
-        .replace(/\s|[^\w]/g, '')
-        .includes(query)
+    results = groups.filter(
+      (item) =>
+        item.Name.toLowerCase().includes(query) ||
+        item.ShortName.toLowerCase().includes(query) ||
+        item.KoreanName.toLowerCase().includes(query)
     );
     if (results.length == 0) {
       return res.status(404).json({

@@ -53,23 +53,25 @@ describe('Artists - Happy Path Tests', () => {
     });
   });
 
-  // This doesn't work
-  //   describe('GET /api/v1/artists?q=', () => {
-  //   it('GET artist by search (KR characters)', (done) => {
-  //     const uri = encodeURI('/api/v1/artists?q=임재범');
-  //     chai
-  //       .request(app)
-  //       .get(uri)
-  //       .end((err, res) => {
-  //         assert.equal(res.statusCode, 200);
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('GET /api/v1/artists?q=', () => {
+    it('GET artist by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/artists?q=%EC%9E%84%EC%9E%AC%EB%B2%94');
+      chai
+        .request(app)
+        .get(uri)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          assert.equal(res.body.count, 1);
+          assert.equal(res.body.results[0].Id, 526);
+          assert.equal(res.body.results[0].FullName, 'Im Jaebum');
+          done();
+        });
+    });
+  });
 });
 
 describe('Artists - Unhappy Path Tests', () => {
-
   describe('GET /api/v1/artists/:id', () => {
     it('GET Artists Id out of range', (done) => {
       chai
@@ -82,7 +84,7 @@ describe('Artists - Unhappy Path Tests', () => {
     });
   });
 
-    describe('GET /api/v1/artists', () => {
+  describe('GET /api/v1/artists', () => {
     it('GET Artists search criteria not met', (done) => {
       chai
         .request(app)

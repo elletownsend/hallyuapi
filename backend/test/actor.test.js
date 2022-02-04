@@ -53,25 +53,22 @@ describe('Actors - Happy Path Tests', () => {
     });
   });
 
-  // This does not work
-  //   describe('GET /api/v1/actors?q=', () => {
-  //   it('GET actor by search (KR characters)', (done) => {
-  //     const uri = encodeURI('/api/v1/actors?q=강하늘'); 
-  //     chai
-  //       .request(app)
-  //       .get(uri)
-  //       .end((err, res) => {
-  //         assert.equal(res.statusCode, 200);
-  //         assert.equal(res.body.status, 'success');
-  //         assert.equal(res.body.results[0].KoreanName, '강하늘');
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('GET /api/v1/actors?q=', () => {
+    it('GET actor by search (KR characters)', (done) => {
+      const uri = encodeURI('/api/v1/actors?q=%EA%B0%95%ED%95%98%EB%8A%98');
+      chai
+        .request(app)
+        .get(uri)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.status, 'success');
+          done();
+        });
+    });
+  });
 });
 
 describe('Actors - Unhappy Path Tests', () => {
-
   describe('GET /api/v1/actors/:id', () => {
     it('GET Actors Id out of range', (done) => {
       chai
@@ -84,7 +81,7 @@ describe('Actors - Unhappy Path Tests', () => {
     });
   });
 
-    describe('GET /api/v1/actors', () => {
+  describe('GET /api/v1/actors', () => {
     it('GET Actors search criteria not met', (done) => {
       chai
         .request(app)

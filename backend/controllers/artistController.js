@@ -21,19 +21,15 @@ const getAllArtists = (req, res) => {
   let results = [];
 
   if (req.query.q != undefined || req.query.q != null) {
-    let query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
+    let query = decodeURIComponent(req.query.q.toLowerCase());
 
     results = artists.filter(
       (item) =>
-        item.FullName.toLowerCase()
-          .replace(/\s|[^\w]/g, '')
-          .includes(query) ||
-        item.StageName.toLowerCase()
-          .replace(/\s|[^\w]/g, '')
-          .includes(query) ||
-        item.Group.toLowerCase()
-          .replace(/\s|[^\w]/g, '')
-          .includes(query)
+        item.FullName.toLowerCase().includes(query) ||
+        item.StageName.toLowerCase().includes(query) ||
+        item.Group.toLowerCase().includes(query) ||
+        item.KoreanName.toLowerCase().includes(query) ||
+        item.KoreanStageName.toLowerCase().includes(query)
     );
     if (results.length == 0) {
       return res.status(404).json({

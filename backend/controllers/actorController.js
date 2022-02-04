@@ -21,16 +21,14 @@ const getAllActors = (req, res) => {
   let results = [];
 
   if (req.query.q != undefined || req.query.q != null) {
-    let query = req.query.q.toLowerCase().replace(/\s|[^\w]/g, '');
+    let query = decodeURIComponent(req.query.q.toLowerCase());
 
     results = actors.filter(
       (item) =>
-        item.FullName.toLowerCase()
-          .replace(/\s|[^\w]/g, '')
-          .includes(query) ||
-        item.StageName.toLowerCase()
-          .replace(/\s|[^\w]/g, '')
-          .includes(query)
+        item.FullName.toLowerCase().includes(query) ||
+        item.StageName.toLowerCase().includes(query) ||
+        item.KoreanName.includes(query) ||
+        item.KoreanStageName.includes(query)
     );
     if (results.length == 0) {
       return res.status(404).json({
