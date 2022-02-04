@@ -16,7 +16,7 @@ For any enquires please contact us on [twitter](https://twitter.com/_elletownsen
 
 #### Code
 
-- Add Front-end with documentation [feature/docs branch]
+- Add Front-end (re-designed!) with documentation [feature/docs branch]
 - Mongodb integration
 - Filtering
 
